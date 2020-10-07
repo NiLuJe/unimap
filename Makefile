@@ -5,7 +5,7 @@ Scripts.txt:
 	wget -c http://www.unicode.org/Public/5.2.0/ucd/Scripts.txt
 	touch Scripts.txt
 clean:
-	rm -f tables.lua Scripts.txt
+	rm -f tables.lua Scripts.txt fontconfig.tar.gz
 	rm -rf fc-lang
 
 fontconfig.tar.gz:
