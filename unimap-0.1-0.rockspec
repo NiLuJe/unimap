@@ -17,6 +17,7 @@ build = {
     type = "builtin",
     modules = {
         ["unimap.init"] = "init.lua",
-        ["unimap.unimaps"] = "unimaps.lua",
+        ["unimap.tables"] = "tables.lua",
+        ["unimap.script_names"] = "script_names.lua",
     }
 }
