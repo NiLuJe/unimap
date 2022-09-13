@@ -1,11 +1,15 @@
 all: tables.lua
-tables.lua: gen.lua Scripts.txt fc-lang Makefile
+tables.lua: gen.lua Scripts.txt script_names.lua fc-lang Makefile
 	lua gen.lua Scripts.txt fc-lang fc-lang/*.orth > tables.lua
 Scripts.txt:
-	wget -c http://www.unicode.org/Public/5.2.0/ucd/Scripts.txt
+	wget -c http://www.unicode.org/Public/15.0.0/ucd/Scripts.txt
 	touch Scripts.txt
+script_names.lua: Scripts.txt
+	echo "return {" > script_names.lua
+	grep -Eo "; [[:alpha:]_]+ #" Scripts.txt | awk '{print "\""$$2}' ORS='",\n' | uniq >> script_names.lua
+	echo "}" >> script_names.lua
 clean:
-	rm -f tables.lua Scripts.txt fontconfig.tar.gz
+	rm -f tables.lua Scripts.txt script_names.lua fontconfig.tar.gz
 	rm -rf fc-lang
 
 fontconfig.tar.gz:
