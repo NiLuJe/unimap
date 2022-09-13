@@ -1,4 +1,5 @@
-local script_names = require 'script_names'
+local script_names = require("script_names")
+local util = require("util")
 
 local tab = {}
 
@@ -118,7 +119,7 @@ for i=3, #arg do
     langs[translate(op)] = compress_table(parse_orth(op, {}))
 end
 
-for k, v in pairs(langs) do
+for k, v in util.orderedPairs(langs) do
     io.stdout:write("       ['"..k.."'] = {"..table.concat(v, ",").."},\n")
 end
 
